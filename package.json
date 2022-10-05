@@ -2,6 +2,7 @@
   "name": "week5class",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Adedipupo.github.io",
   "dependencies": {
     "@tanstack/react-query": "^4.9.0",
     "@testing-library/jest-dom": "^5.16.5",

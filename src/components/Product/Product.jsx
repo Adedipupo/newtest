@@ -4,15 +4,18 @@ import { RotatingTriangles } from "react-loader-spinner";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Product() {
-  // const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState(null);
   // const [loading, setLoading] = useState(false);
 
 
   const { isLoading, error, data } = useQuery(['shoppingData'], () =>
-    fetch('https://shoppingapiacme.herokuapp.com/shopping').then(res =>
-      res.json()
-    )
+    fetch('https://shoppingapiacme.herokuapp.com/shopping').then((response => response.json())).then((responseData) => setProducts(responseData))
   )
+  // const { isLoading, error, data } = useQuery(['shoppingData'], () =>
+  //   fetch('https://testdeployment-production-87df.up.railway.app/recipe').then(res =>
+  //     res.json()
+  //   )
+  // )
 
   // useEffect(() => {
   //   try {
@@ -28,7 +31,7 @@ export default function Product() {
   //     console.error(error);
   //   }
   // }, []);
-console.log("first", data)
+  console.log("data",products);
   return (
     <div>
       <h1>Featured Products</h1>
@@ -47,8 +50,8 @@ console.log("first", data)
             wrapperClass="rotating-triangels-wrapper"
           />
         ) : (
-          data?.map((product) => (
-            <div className="card" key={product.id}>
+          products?.map((product) => (
+            <div className="card" key={product._id}>
               <img src={product.image} alt={product.item} />
               <h3>{product.item}</h3>
               <p>{product.brand}</p>
